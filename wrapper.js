@@ -28,12 +28,19 @@ function Wrapper(options) {
 
 	if (this.fixedWidth) return;
 	var instance = this;
-	window.addEventListener('resize', function() {
+	var timer;
+
+	function handleResize() {
 		var newColCount = instance.getColCount();
 		if (newColCount !== instance.numCols) {
 			instance.numCols = newColCount;
 			instance.render();
 		}
+	}
+
+	window.addEventListener('resize', function () {
+		clearTimeout(timer);
+		timer = setTimeout(handleResize, 50);
 	});
 }
 
