@@ -15,8 +15,12 @@ function Wrapper(options) {
 	this.parent = options.parent;
 	this.cellWidth = options.cellWidth;
 	this.cellHeight = options.cellHeight;
+
+	// defaults to true if numCols is passed otherwise false
 	this.fixedWidth = this.fixedWidth !== undefined ? this.fixedWidth :
 		options.numCols !== undefined;
+
+	// defaults to as many columns as can fit in parent
 	this.numCols = options.numCols || this.getColCount();
 
 	if (this.fixedWidth) return;
