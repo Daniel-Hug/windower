@@ -1,18 +1,21 @@
 /*
-	input:
-	{
-		cells: array (required),
+	// create an instance
+	var wrapper = new Wrapper({
 		parent: element in document (required),
+		cells: array (required),
 		cellWidth: number (in pixels; required),
 		cellHeight: number (in pixels; required),
 		numCols: number (optional),
 		fixedWidth: boolean (optional)
-	}
+	});
+
+	// set initial cell positions
+	wrapper.init();
 */
 
 function Wrapper(options) {
-	this.cells = options.cells;
 	this.parent = options.parent;
+	this.cells = options.cells;
 	this.cellWidth = options.cellWidth;
 	this.cellHeight = options.cellHeight;
 
