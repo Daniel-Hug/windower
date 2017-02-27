@@ -34,11 +34,6 @@ Wrapper.prototype.getColCount = function() {
 	return Math.floor(this.parent.offsetWidth / this.cellWidth);
 };
 
-// calculate proper height of content based on number of columns
-Wrapper.prototype.getContentHeight = function() {
-	return Math.ceil(this.cells.length / this.numCols) * this.cellHeight;
-};
-
 Wrapper.prototype.init = function() {
 	for (var i = 0; i < this.cells.length; i++) {
 		var style = this.cells[i].style;
