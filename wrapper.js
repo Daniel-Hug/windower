@@ -10,32 +10,25 @@
 	}
 */
 
-var Wrapper = (function() {
-	// Add event listener shortcut
-	function on(target, type, callback, useCapture) {
-		target.addEventListener(type, callback, !!useCapture);
-	}
+function Wrapper(options) {
+	this.cells = options.cells;
+	this.parent = options.parent;
+	this.cellWidth = options.cellWidth;
+	this.cellHeight = options.cellHeight;
+	this.fixedWidth = this.fixedWidth !== undefined ? this.fixedWidth :
+		options.numCols !== undefined;
+	this.numCols = options.numCols || this.getColCount();
 
-	return function Wrapper(options) {
-		this.cells = options.cells;
-		this.parent = options.parent;
-		this.cellWidth = options.cellWidth;
-		this.cellHeight = options.cellHeight;
-		this.fixedWidth = this.fixedWidth !== undefined ? this.fixedWidth :
-			options.numCols !== undefined;
-		this.numCols = options.numCols || this.getColCount();
-
-		if (this.fixedWidth) return;
-		var instance = this;
-		on(window, 'resize', function() {
-			var newColCount = instance.getColCount();
-			if (newColCount !== instance.numCols) {
-				instance.numCols = newColCount;
-				instance.init();
-			}
-		});
-	};
-})();
+	if (this.fixedWidth) return;
+	var instance = this;
+	window.addEventListener('resize', function() {
+		var newColCount = instance.getColCount();
+		if (newColCount !== instance.numCols) {
+			instance.numCols = newColCount;
+			instance.init();
+		}
+	});
+}
 
 Wrapper.prototype.getColCount = function() {
 	return Math.floor(this.parent.offsetWidth / this.cellWidth);
