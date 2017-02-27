@@ -1,5 +1,6 @@
 /*
-	// create an instance
+	usage:
+
 	var wrapper = new Wrapper({
 		parent: element in document (required),
 		cells: array (required),
@@ -8,9 +9,6 @@
 		numCols: number (optional),
 		fixedWidth: boolean (optional)
 	});
-
-	// set initial cell positions
-	wrapper.init();
 */
 
 function Wrapper(options) {
@@ -26,13 +24,15 @@ function Wrapper(options) {
 	// defaults to as many columns as can fit in parent
 	this.numCols = options.numCols || this.getColCount();
 
+	this.render();
+
 	if (this.fixedWidth) return;
 	var instance = this;
 	window.addEventListener('resize', function() {
 		var newColCount = instance.getColCount();
 		if (newColCount !== instance.numCols) {
 			instance.numCols = newColCount;
-			instance.init();
+			instance.render();
 		}
 	});
 }
@@ -41,7 +41,7 @@ Wrapper.prototype.getColCount = function() {
 	return Math.floor(this.parent.offsetWidth / this.cellWidth);
 };
 
-Wrapper.prototype.init = function() {
+Wrapper.prototype.render = function() {
 	for (var i = 0; i < this.cells.length; i++) {
 		var style = this.cells[i].style;
 		style.left = i % this.numCols * this.cellWidth + 'px';
