@@ -1,0 +1,21 @@
+{
+  "name": "windower",
+  "main": "windower.js",
+  "homepage": "https://github.com/Daniel-Hug/windower",
+  "authors": [
+    "Daniel Hug <daniel@hugwebdesign.com>"
+  ],
+  "description": "Windowing: only show elements visible at current scroll position",
+  "keywords": [
+    "JS",
+    "scrolling"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
